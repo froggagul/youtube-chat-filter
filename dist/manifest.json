@@ -2,15 +2,21 @@
     "manifest_version": 2,
 
     "name": "Chrome Extension (built with TypeScript + React)",
-    "description":
-        "A boilerplate project to quickly build a Chrome extension using TypeScript and React (built using webpack).",
+    "description": "A boilerplate project to quickly build a Chrome extension using TypeScript and React (built using webpack).",
     "version": "1.0.0",
 
     "browser_action": {
         "default_icon": "icon16.png",
         "default_popup": "popup.html"
     },
-
+    "content_scripts": [
+      {
+        "run_at": "document_start",
+        "matches": ["https://www.youtube.com/live_chat*"],
+        "all_frames": true,
+        "js": ["js/content-script.js"]
+      }
+    ],
     "background": {
         "scripts": ["js/eventPage.js"],
         "persistent": false
@@ -22,5 +28,5 @@
         "128": "icon128.png"
     },
 
-    "permissions": []
+    "permissions": ["tabs"]
 }
